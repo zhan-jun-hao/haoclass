@@ -1,0 +1,13 @@
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\config\CommonSecurityAutoConfiguration.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\config\CommonSecurityProperties.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\context\AuthenticatedUser.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\context\HeaderAuthenticatedUser.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\context\SecurityRole.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\context\UserContextHolder.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\feign\InternalFeignConfiguration.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\feign\UserContextRequestInterceptor.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\filter\HeaderAuthenticationFilter.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\filter\TraceIdFilter.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\handler\CommonAccessDeniedHandler.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\handler\CommonAuthenticationEntryPoint.java
+D:\haoclass\haoclass-server\common-security\src\main\java\com\haoclass\security\trace\TraceContextHolder.java

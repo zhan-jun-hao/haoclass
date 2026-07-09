@@ -1,0 +1,22 @@
+CREATE TABLE `coupon_template` (
+                                   `id` bigint unsigned NOT NULL COMMENT '优惠券模板ID，雪花ID',
+                                   `couponName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '优惠券名称',
+                                   `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '优惠券说明',
+                                   `thresholdAmount` int unsigned NOT NULL DEFAULT '0' COMMENT '使用门槛金额，单位：分，0表示无门槛',
+                                   `discountAmount` int unsigned NOT NULL COMMENT '优惠金额，单位：分',
+                                   `totalStock` int unsigned NOT NULL COMMENT '发行总数量',
+                                   `receivedCount` int unsigned NOT NULL DEFAULT '0' COMMENT '已领取数量',
+                                   `receiveStartTime` datetime NOT NULL COMMENT '领取开始时间',
+                                   `receiveEndTime` datetime NOT NULL COMMENT '领取结束时间',
+                                   `validStartTime` datetime NOT NULL COMMENT '使用有效期开始时间',
+                                   `validEndTime` datetime NOT NULL COMMENT '使用有效期结束时间',
+                                   `status` tinyint NOT NULL DEFAULT '0' COMMENT '优惠券状态：0草稿 1已发布 2已停止',
+                                   `createdUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '创建人ID',
+                                   `updatedUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '更新人ID',
+                                   `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                                   `updateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                                   `deleted` tinyint NOT NULL DEFAULT '0' COMMENT '逻辑删除：0未删除 1已删除',
+                                   PRIMARY KEY (`id`),
+                                   KEY `idx_client_receive` (`deleted`,`status`,`receiveStartTime`,`receiveEndTime`),
+                                   KEY `idx_admin_list` (`deleted`,`status`,`createTime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='优惠券模板表';

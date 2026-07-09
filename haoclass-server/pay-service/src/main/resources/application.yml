@@ -1,0 +1,31 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: pay-service
+
+  config:
+    import: optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+
+  cloud:
+    nacos:
+      server-addr: ${NACOS_SERVER_ADDR:localhost:8848}
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+        ip: ${NACOS_DISCOVERY_IP:127.0.0.1}
+      config:
+        server-addr: ${spring.cloud.nacos.server-addr}
+        file-extension: yaml
+
+haoclass:
+  pay:
+    wechat:
+      enabled: false
+      app-id: xxx
+      mch-id: xxx
+      merchant-serial-number: xxx
+      private-key-path: D:/haoclass/certs/apiclient_key.pem
+      api-v3-key: xxx
+      notify-url: https://你的公网地址/api/pay/notify/wechat/payment
+      refund-notify-url: https://你的公网地址/api/pay/notify/wechat/refund

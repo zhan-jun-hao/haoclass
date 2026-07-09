@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.haoclass.main.infrastructure.persistence.mapper.UserMapper">
+
+    <update id="restoreUserById">
+        UPDATE user
+        SET deleted = 0,
+        status = 1,
+        updateTime = #{updateTime},
+        updatedUser = #{updatedUser}
+        WHERE id = #{id}
+        AND deleted = 1
+    </update>
+
+    <select id="findUnExistUserByPhone" resultType="com.haoclass.main.infrastructure.persistence.po.User">
+        SELECT
+            id,
+            phone,
+            nickname,
+            avatarUrl,
+            password,
+            status,
+            vipExpireTime,
+            lastLoginTime,
+            createdUser,
+            updatedUser,
+            createTime,
+            updateTime,
+            deleted
+        FROM user
+        WHERE phone = #{phone}
+            AND deleted = 1
+        ORDER BY updateTime DESC
+        LIMIT 1
+    </select>
+
+</mapper>

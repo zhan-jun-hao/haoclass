@@ -1,0 +1,21 @@
+CREATE TABLE `mq_message` (
+                              `id` bigint unsigned NOT NULL COMMENT '消息ID，雪花ID',
+                              `bizType` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '业务类型，例如：PAYMENT_SUCCESS',
+                              `bizId` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '业务ID，例如：paymentNo',
+                              `exchangeName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '交换机名称',
+                              `routingKey` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '路由键',
+                              `messageBody` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '消息体JSON',
+                              `status` tinyint NOT NULL DEFAULT '0' COMMENT '状态：0待发送 1已发送 2发送失败',
+                              `retryCount` int unsigned NOT NULL DEFAULT '0' COMMENT '重试次数',
+                              `nextRetryTime` datetime NOT NULL COMMENT '下次重试时间',
+                              `lastError` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '最后一次错误信息',
+                              `createdUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '创建人ID',
+                              `updatedUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '更新人ID',
+                              `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                              `updateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                              `deleted` tinyint NOT NULL DEFAULT '0' COMMENT '逻辑删除：0未删除 1已删除',
+                              PRIMARY KEY (`id`),
+                              UNIQUE KEY `uk_biz_message` (`bizType`,`bizId`),
+                              KEY `idx_retry` (`deleted`,`status`,`nextRetryTime`),
+                              KEY `idx_biz_id` (`bizId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='MQ本地消息表';

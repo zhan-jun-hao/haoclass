@@ -1,0 +1,3 @@
+com\haoclass\coupon\api\client\CouponFeignClient.class
+com\haoclass\coupon\api\dto\request\ChosenCouponReqVo.class
+com\haoclass\coupon\api\dto\response\AvailableCouponResponse.class

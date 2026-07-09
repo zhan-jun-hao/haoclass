@@ -1,0 +1,7 @@
+com\haoclass\gateway\filter\AuthenticationGlobalFilter.class
+com\haoclass\gateway\security\GatewayUserAuthStateService.class
+com\haoclass\gateway\GatewayServiceApplication.class
+com\haoclass\gateway\security\GatewayJwtTokenProvider.class
+com\haoclass\gateway\security\GatewaySecurityProperties.class
+com\haoclass\gateway\security\JwtProperties.class
+com\haoclass\gateway\filter\TraceIdGlobalFilter.class

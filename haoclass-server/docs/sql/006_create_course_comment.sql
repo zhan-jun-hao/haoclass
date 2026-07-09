@@ -1,0 +1,21 @@
+CREATE TABLE `course_comment` (
+                                  `id` bigint unsigned NOT NULL COMMENT '评论ID，雪花ID',
+                                  `courseId` bigint unsigned NOT NULL COMMENT '课程ID',
+                                  `episodeId` bigint unsigned NOT NULL COMMENT '章节ID',
+                                  `userId` bigint unsigned NOT NULL COMMENT '评论用户ID',
+                                  `parentId` bigint unsigned NOT NULL DEFAULT '0' COMMENT '直接父评论ID，0表示一级评论',
+                                  `rootId` bigint unsigned NOT NULL DEFAULT '0' COMMENT '根评论ID，0表示一级评论',
+                                  `content` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '评论内容',
+                                  `likeCount` int unsigned NOT NULL DEFAULT '0' COMMENT '点赞数',
+                                  `status` tinyint NOT NULL DEFAULT '0' COMMENT '评论状态：0待审核 1已发布 2隐藏 3已驳回',
+                                  `createdUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '创建人ID',
+                                  `updatedUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '更新人ID',
+                                  `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                                  `updateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                                  `deleted` tinyint NOT NULL DEFAULT '0' COMMENT '逻辑删除：0未删除 1已删除',
+                                  PRIMARY KEY (`id`),
+                                  KEY `idx_episode_root_list` (`courseId`,`episodeId`,`rootId`,`deleted`,`status`,`createTime`),
+                                  KEY `idx_root_reply` (`rootId`,`deleted`,`status`,`createTime`),
+                                  KEY `idx_admin_list` (`deleted`,`status`,`createTime`),
+                                  KEY `idx_user_list` (`userId`,`deleted`,`createTime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='课程章节评论表';

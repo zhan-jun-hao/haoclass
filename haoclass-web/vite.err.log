@@ -1,0 +1,8 @@
+[2m16:29:07[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/client/courses?current=1&size=20[39m
+AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1714:7)
+[2m16:32:13[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/client/courses?current=1&size=20[39m
+AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1714:7)

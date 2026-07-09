@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.haoclass.main.infrastructure.persistence.mapper.ClientCourseCommentMapper">
+
+    <resultMap id="ClientCourseCommentVoMap"
+               type="com.haoclass.main.interfaces.vo.comment.client.response.ClientCourseCommentVo">
+        <id column="id" property="id"/>
+        <result column="courseId" property="courseId"/>
+        <result column="episodeId" property="episodeId"/>
+        <result column="userId" property="userId"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatarUrl" property="avatarUrl"/>
+        <result column="parentId" property="parentId"/>
+        <result column="rootId" property="rootId"/>
+        <result column="replyToNickname" property="replyToNickname"/>
+        <result column="content" property="content"/>
+        <result column="likeCount" property="likeCount"/>
+        <result column="liked" property="liked"/>
+        <result column="replyCount" property="replyCount"/>
+        <result column="status" property="status"/>
+        <result column="createTime" property="createTime"/>
+    </resultMap>
+
+    <select id="selectPage" resultMap="ClientCourseCommentVoMap">
+        SELECT
+            c.id,
+            c.courseId,
+            c.episodeId,
+            c.userId,
+            u.nickname,
+            u.avatarUrl,
+            c.parentId,
+            c.rootId,
+            parentUser.nickname AS replyToNickname,
+            c.content,
+            c.likeCount,
+            CASE WHEN commentLike.id IS NULL
+                    THEN 0
+                    ELSE 1
+            END AS liked,
+            CASE
+                WHEN c.rootId = 0 THEN (
+                    SELECT COUNT(*)
+                    FROM course_comment reply
+                    WHERE reply.rootId = c.id
+                      AND reply.status = 1
+                      AND reply.deleted = 0
+                )
+                ELSE 0
+            END AS replyCount,
+            c.status,
+            c.createTime
+        FROM course_comment c
+        LEFT JOIN `user` u
+            ON u.id = c.userId
+        LEFT JOIN course_comment parentComment
+            ON parentComment.id = c.parentId
+            AND parentComment.deleted = 0
+        LEFT JOIN `user` parentUser
+            ON parentUser.id = parentComment.userId
+        LEFT JOIN course_comment_like commentLike
+            ON commentLike.commentId = c.id
+            AND commentLike.userId = #{userId}
+            AND commentLike.status = 1
+            AND commentLike.deleted = 0
+        WHERE c.courseId = #{query.courseId}
+          AND c.episodeId = #{query.episodeId}
+          AND c.rootId = #{query.rootId}
+          AND c.status = 1
+          AND c.deleted = 0
+        <choose>
+            <when test="query.rootId == 0">
+                ORDER BY c.createTime DESC
+            </when>
+            <otherwise>
+                ORDER BY c.createTime ASC
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+package com.haoclass.common.exception;
+
+import lombok.Getter;
+
+/**
+ * Business exception for expected domain/application failures.
+ */
+@Getter
+public class BusinessException extends RuntimeException {
+
+    private final int code;
+
+    public BusinessException(String message) {
+        this(500, message);
+    }
+
+    public BusinessException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public static BusinessException badRequest(String message) {
+        return new BusinessException(400, message);
+    }
+
+    public static BusinessException notFound(String message) {
+        return new BusinessException(404, message);
+    }
+
+    public static BusinessException noGrant(String message) {
+        return new BusinessException(403, message);
+    }
+}

@@ -1,0 +1,1 @@
+domain层不建议直接依赖controller的reqVo，在application进行转换

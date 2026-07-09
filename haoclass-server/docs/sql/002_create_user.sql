@@ -1,0 +1,20 @@
+CREATE TABLE `user` (
+                        `id` bigint unsigned NOT NULL COMMENT '用户ID',
+                        `phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '手机号',
+                        `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
+                        `avatarUrl` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像URL',
+                        `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码密文',
+                        `role` tinyint NOT NULL DEFAULT '0' COMMENT '角色：0普通用户 1管理员',
+                        `status` tinyint NOT NULL DEFAULT '1' COMMENT '状态：0禁用 1正常',
+                        `vipExpireTime` datetime DEFAULT NULL COMMENT 'VIP到期时间',
+                        `lastLoginTime` datetime DEFAULT NULL COMMENT '最后登录时间',
+                        `createdUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '创建人ID',
+                        `updatedUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '更新人ID',
+                        `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                        `updateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                        `deleted` tinyint NOT NULL DEFAULT '0' COMMENT '逻辑删除：0未删除 1已删除',
+                        PRIMARY KEY (`id`),
+                        UNIQUE KEY `uk_phone` (`phone`),
+                        KEY `idx_admin_list` (`deleted`,`status`,`createTime`),
+                        KEY `idx_nickname` (`nickname`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';

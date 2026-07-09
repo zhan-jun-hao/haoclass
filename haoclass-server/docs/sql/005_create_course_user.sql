@@ -1,0 +1,21 @@
+CREATE TABLE `course_user` (
+                               `id` bigint unsigned NOT NULL COMMENT '用户课程权益ID，雪花ID',
+                               `userId` bigint unsigned NOT NULL COMMENT '用户ID',
+                               `courseId` bigint unsigned NOT NULL COMMENT '课程ID',
+                               `orderId` bigint unsigned NOT NULL DEFAULT '0' COMMENT '来源订单ID',
+                               `sourceType` tinyint NOT NULL DEFAULT '0' COMMENT '来源：0购买 1后台赠送 2免费领取',
+                               `status` tinyint NOT NULL DEFAULT '1' COMMENT '权益状态：0失效 1有效 2退款失效',
+                               `grantTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '获得权益时间',
+                               `expireTime` datetime DEFAULT NULL COMMENT '权益过期时间，NULL表示永久有效',
+                               `createdUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '创建人ID',
+                               `updatedUser` bigint unsigned NOT NULL DEFAULT '0' COMMENT '更新人ID',
+                               `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                               `updateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                               `deleted` tinyint NOT NULL DEFAULT '0' COMMENT '逻辑删除：0未删除 1已删除',
+                               PRIMARY KEY (`id`),
+                               UNIQUE KEY `uk_user_course` (`userId`,`courseId`),
+                               KEY `idx_user_courses` (`userId`,`status`,`deleted`,`createTime`),
+                               KEY `idx_course_users` (`courseId`,`status`,`deleted`),
+                               KEY `idx_orderId` (`orderId`),
+                               KEY `idx_expire_scan` (`status`,`expireTime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户课程权益表';

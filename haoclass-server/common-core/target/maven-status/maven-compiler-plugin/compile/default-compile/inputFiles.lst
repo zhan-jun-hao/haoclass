@@ -1,0 +1,12 @@
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\context\UserAuthStateConstants.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\context\UserContext.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\context\UserContextHeaders.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\exception\BusinessException.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\exception\ErrorCode.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\query\PageQuery.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\query\TimeRangePageQuery.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\result\BaseEntity.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\result\PageResult.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\result\Result.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\trace\TraceConstants.java
+D:\haoclass\haoclass-server\common-core\src\main\java\com\haoclass\common\trace\TraceIdGenerator.java

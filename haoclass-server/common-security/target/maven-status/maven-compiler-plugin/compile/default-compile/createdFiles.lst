@@ -1,0 +1,13 @@
+com\haoclass\security\feign\UserContextRequestInterceptor.class
+com\haoclass\security\filter\HeaderAuthenticationFilter.class
+com\haoclass\security\trace\TraceContextHolder.class
+com\haoclass\security\context\SecurityRole.class
+com\haoclass\security\context\UserContextHolder.class
+com\haoclass\security\context\HeaderAuthenticatedUser.class
+com\haoclass\security\filter\TraceIdFilter.class
+com\haoclass\security\handler\CommonAuthenticationEntryPoint.class
+com\haoclass\security\handler\CommonAccessDeniedHandler.class
+com\haoclass\security\config\CommonSecurityProperties.class
+com\haoclass\security\feign\InternalFeignConfiguration.class
+com\haoclass\security\context\AuthenticatedUser.class
+com\haoclass\security\config\CommonSecurityAutoConfiguration.class

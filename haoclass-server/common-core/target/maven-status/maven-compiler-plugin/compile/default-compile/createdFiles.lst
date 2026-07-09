@@ -1,0 +1,12 @@
+com\haoclass\common\trace\TraceIdGenerator.class
+com\haoclass\common\context\UserContext.class
+com\haoclass\common\result\PageResult.class
+com\haoclass\common\context\UserAuthStateConstants.class
+com\haoclass\common\context\UserContextHeaders.class
+com\haoclass\common\result\BaseEntity.class
+com\haoclass\common\result\Result.class
+com\haoclass\common\trace\TraceConstants.class
+com\haoclass\common\exception\ErrorCode.class
+com\haoclass\common\query\PageQuery.class
+com\haoclass\common\query\TimeRangePageQuery.class
+com\haoclass\common\exception\BusinessException.class
